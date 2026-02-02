@@ -13,10 +13,25 @@ describe('PostsService', () => {
   });
 
   it('should add a new post', () => {
-    // реализуйте тест-кейс
+    const created = postsService.create(post);
+
+    expect(created).toEqual(
+      expect.objectContaining({
+        text: post.text,
+        id: expect.any(String),
+        date: expect.any(String),
+      }),
+    );
+
+    const found = postsService.find(created.id);
+    expect(found).toEqual(created);
   });
 
   it('should find a post', () => {
-    // реализуйте тест-кейс
+    const created = postsService.create(post);
+
+    const found = postsService.find(created.id);
+
+    expect(found).toEqual(created);
   });
 });
